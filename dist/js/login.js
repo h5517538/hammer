@@ -32,6 +32,50 @@ define(['login1','jquery','jquery-cookie'],function(login1,$){
 					'opacity': '0.618',
 				})
 			})
+			$('#btn').click(function(){
+				if($('#userName').attr('class') == 'red'){
+					alert("请检查您输入的账号！");
+				}else{
+				var username=$('#userName input').val();
+				var password=$("#passWord input").val();
+				if(username!=""&&password!=""){
+					$.ajax({
+						type:"POST",
+						url:"php/mysql.php",
+						dataType:"JSON",
+						data:{
+							"username":username,
+							"password":password
+						},
+						success:function(data){
+							alert(data)
+							switch(data){
+								case 0://success
+									alert("登陆成功");
+									window.location.assign('index.html')
+									break;
+								case 1://密码错误
+									alert("密码错误！");
+									break;
+								case 2://用户不存在
+									alert("该用户不存在！");
+									break;
+								
+								default:
+								alert(data)
+							}
+							
+						},
+						error:function(data){
+							alert(data)
+						}
+					})
+				}else{
+					alert("请检查您的输入！");
+				}
+			}
+			})
+
 		})
 	}
 	return{

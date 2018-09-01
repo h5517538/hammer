@@ -1,43 +1,18 @@
-<?php 
-	// 设置编码方式
-	header("Content-type:text/html;charset=utf-8");
-
-	//post提交过来的数据提取
-	$username = $_POST['username'];
-	$password = $_POST['password'];
-
-	//少用户是否重名的验证
-
-	//1、链接数据库
-	$link = mysql_connect('localhost', 'root', '123456');
-	//2、判断是否链接成功
-	if(!$link){
-		echo '数据库链接失败';
-		exit; //退出
+<?php
+	header("Content-type: text/html; charset=UTF-8");
+	session_start();
+	$userName = $_POST['username'];
+	$passWord = $_POST['password'];
+	$con=mysql_connect('localhost','root','123456');
+	if(!$con){
+	    die('error:'.mysql_error());
 	}
-
-	//3、设置字符集
-	mysql_set_charset('utf8');
-
-	//4、选择用哪个数据库
-	mysql_select_db('qfqd1803');
-
-	$time = time();
-
-	//5、准备sql语句
-	$sql = "insert into qf_users(username, password, create_time) values('{$username}','{$password}',{$time})";
-	// echo $sql;
-
-	//6、发送sql语句
-	$res = mysql_query($sql);
-
-	// var_dump($res);
-	if($res){
-		echo "添加成功<a href = 'userlish.php'>返回首页</a>";
-	}else{
-		echo '添加失败';
-		exit;
-	}
-	mysql_close($link);
-
- ?>
+	mysql_select_db('chuizi');
+	$result=mysql_query("select * from cz_user where username='$userName'");
+    if($row=mysql_fetch_assoc($result)){
+        echo 1;//用户已存在
+    }else{//注册成功
+        mysql_query("insert into `cz_user` (`username`,`password`) values ('$userName','$passWord')");
+        echo 2;
+    }
+?>

@@ -199,7 +199,7 @@ h4 {
   border-radius: 5px;
   color: #999; }
 
-h4:before, h5:after {
+h4:before, h4:after {
   content: "";
   width: 0px;
   height: 0px;
@@ -293,7 +293,7 @@ h5:before {
 #main .check .check-l a {
   color: #4a75d8; }
 
-#main .btn {
+#main #btn {
   border: 1px solid #adbad8;
   margin-top: 28px;
   height: 46px;
@@ -316,6 +316,9 @@ h5:before {
   margin: 71px auto 0 auto;
   text-align: center;
   font: 12px/25px ''; }
+
+.footer em {
+  color: #757575; }
 
 .footer span {
   margin: 0 6px; }

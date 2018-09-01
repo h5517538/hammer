@@ -129,7 +129,7 @@ b {
   color: #999;
   font: 12px/12px ''; }
 
-#main .btn {
+#main #btn {
   border: 1px solid #adbad8;
   margin-top: 28px;
   height: 46px;
@@ -220,6 +220,9 @@ b {
   margin: 71px auto 0 auto;
   text-align: center;
   font: 12px/25px ''; }
+
+.footer em {
+  color: #757575; }
 
 .footer span {
   margin: 0 6px; }

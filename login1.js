@@ -2,6 +2,7 @@
 var oUser = document.getElementById('userName')
 var iUser = oUser.getElementsByTagName('input')[0]
 var iLook = document.getElementById('look')
+var oBtn = document.getElementById('btn')
 var oPwd = document.getElementById('passWord')
 var iPwd = oPwd.getElementsByTagName('input')[0]
 iUser.onblur = function(){
@@ -13,6 +14,8 @@ iUser.onblur = function(){
 			oUser.classList.add('red')
 			iLook.style.display = 'block'
 			iLook.innerHTML = '手机号/邮箱格式错误';
+		}else{
+			oUser.classList.add('green')
 		}
 	}
 	iUser.oninput = function(){

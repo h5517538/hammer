@@ -1,37 +1,17 @@
-<?php 
-	// php链接数据库，总结为天龙八部
-	// 设置编码方式
-	header("Content-type:text/html;charset=utf-8");
-	//1、链接数据库
-	$link = mysql_connect('localhost', 'root', '123456');
-	//2、判断是否链接成功
-	if(!$link){
-		echo '数据库链接失败';
-		exit; //退出
+<?php
+	header("Content-type: text/html; charset=UTF-8");
+	session_start();
+	$userName = $_POST['username'];
+	$passWord=$_POST['password'];
+	$con=mysql_connect('localhost','root','123456');
+	if(!$con){
+		die('error:'.mysql_error());
 	}
-
-	//3、设置字符集
-	mysql_set_charset('utf8');
-
-	//4、选择用哪个数据库
 	mysql_select_db('chuizi');
-
-	//5、准备sql语句
-	$sql = "select * from cz_user";
-
-	//6、发送sql语句
-	$res = mysql_query($sql);
-
-	// var_dump($res);
-	//7、处理结果集
-	while($result = mysql_fetch_assoc($res)){
-		var_dump($result);
+	$result=mysql_query("select * from cz_user where username='$userName'");
+	if($row=mysql_fetch_assoc($result)){
+		echo 0;
+	}else{
+		echo 3;//用户不存在
 	}
-	// $result = mysql_fetch_assoc($res);
-	// $result = mysql_fetch_assoc($res);
-
-	// var_dump($result);
-
-	//8、关闭数据库
-	mysql_close();
- ?>
+?>
